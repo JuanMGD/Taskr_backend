@@ -4,9 +4,26 @@ const cors = require('cors');
 
 // crear el servidor
 const app = express();
+// Configurar CORS
+const whitelist = [process.env.FRONTEND_URL];
+
+const corsOptions = {
+ origin: function (origin, callback) {
+ if (whitelist.includes(origin)) {
+// Puede consultar la API
+ callback(null, true);
+} else {
+ // No esta permitido
+ callback(new Error("Error de Cors"));
+ }
+},
+};
+
+
 
 // habilitar cors
-app.use(cors());
+app.use(cors(corsOptions));
+// app.use(cors());
 
 // conectar la base de datos
 conectarDB();
