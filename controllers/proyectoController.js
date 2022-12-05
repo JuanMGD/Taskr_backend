@@ -30,15 +30,7 @@ exports.crearProyecto = async (req, res) => {
 exports.obtenerProyectos = async (req, res) => {
     try {
         // const proyectos = await Proyecto.find({ creador: req.usuario.id }).sort({ creado: -1 });
-        const proyectos = await Proyecto.find({ miembros: {$in: req.usuario.id} })
-        .aggregate([{
-            $lookup: {
-            From: 'Usuario',
-            LocalField: 'miembros',
-            foreignField: '_id',
-            as: 'info_miembros'
-        }}])
-        .sort({ creado: -1 });
+        const proyectos = await Proyecto.find({ miembros: {$in: req.usuario.id} }).sort({ creado: -1 });
         res.json({ proyectos });
     } catch (error) {
         console.log(error);
