@@ -29,8 +29,7 @@ exports.crearProyecto = async (req, res) => {
 // Obtiene todos los proyectos del usuario actual
 exports.obtenerProyectos = async (req, res) => {
     try {
-        // const proyectos = await Proyecto.find({ creador: req.usuario.id }).sort({ creado: -1 });
-        const proyectos = await Proyecto.find({ miembros: {$in: req.usuario.id} }).sort({ creado: -1 });
+        const proyectos = await Proyecto.find({ creador: req.usuario.id }).sort({ creado: -1 });
         res.json({ proyectos });
     } catch (error) {
         console.log(error);
