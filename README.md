@@ -1,2 +1,3 @@
 # Taskr Backend
-REST API made with node and express to be consumed by the Taskr frontend.
+
+Taskr is a web application for project management developed with the MERN Stack. The backend is a REST API made with Node, Express and MongoDB.
